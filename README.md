@@ -18,7 +18,7 @@ But I will show a function because there are more important to learn than print(
 }
 ```
 A function generaly take parameter but always return something.
-return value is the result of the last statement in function
+return value is the result of the last [statement](statement.md) in function
 ```json
 {
   "name" : "hello",
