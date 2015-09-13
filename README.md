@@ -1,6 +1,8 @@
 # jsonlang
 json based programming language
 
+synthax specification
+
 ```json
 {
   "name" : "hello",
