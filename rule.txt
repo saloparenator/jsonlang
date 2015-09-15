@@ -1,0 +1,37 @@
+
+user function cannot be used inside predicate
+predicate dont transform data, it only test it.
+
+why:
+  if predicate contain function and function contain predicate, we risk infinite recursion
+  predicate should not have side effect. thus implementation function can
+
+imply:
+  calculate trajectory first then test it
+
+anyway:
+  you will have sugar synthax
+
+function call could only have reference and déclaration at call
+
+why:
+  because i am leasy
+  anyway, it is always preferable to not make inner call
+
+imply:
+  you cant call functionA(functionB(value))
+  you'd better say
+  retB = functionB(value)
+  retA = functionA(retB)
+
+anyway:
+  will debuging, you always end up declare everything and monitor it.
+
+you should always name your return value.
+but it is not enforced
+because there are function that are side effective
+
+decision:
+predicate engine is completely separated from transformation engine.
+they have their own synthax and mecanic.
+function dont do any comparision either
