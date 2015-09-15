@@ -1,0 +1,59 @@
+{
+    "_id": "hello2",
+    "_rev": "2-238934fcf66a5a67579e7d53d1d2137a",
+    "doc": "call print(hellomessage) then return hellomessage",
+    "constant": {
+        "helloPrefix": "hello ",
+        "helloWorld": "hello world",
+        "helloEverybody": "hello everybody",
+        "helloMsg": "hello"
+    },
+    "code": [
+        {
+            "predicate": [
+                "param is empty"
+            ],
+            "code": [
+                "msg = print(helloWorld)"
+            ],
+            "return": "helloWorld"
+        },
+        {
+            "predicate": [
+                "param is string"
+            ],
+            "code": [
+                "msg = concat(helloPrefix,param)",
+                "print(msg)"
+            ],
+            "return": "msg"
+        },
+        {
+            "predicate": [
+                "param is list"
+            ],
+            "code": [
+                "current = first(param)",
+                "rest = rest(param)",
+                "hello(current)",
+                "hello(rest)"
+            ],
+            "return": "helloEverybody"
+        },
+        {
+            "predicate": [
+                "param is dict"
+            ],
+            "code": [
+                "hello(helloMsg)"
+            ],
+            "return": "helloMsg"
+        }
+    ],
+    "test": [
+        "hello() => 'hello world'",
+        "hello('you') => 'hello you'",
+        "hello(['mary','bob']) => 'hello everybody'",
+        "hello({}) => 'hello'"
+    ]
+}
