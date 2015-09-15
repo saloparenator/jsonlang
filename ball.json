@@ -1,0 +1,61 @@
+{ "code" : [ 
+  { 
+    "error" : "require ball : {x:int,y:int,nx:int,ny:int,vx:int,vy:int}",
+    "predicate" : [ "ball.x is not number",
+                    "ball.y is not number",
+                    "ball.nx is not number",
+                    "ball.ny is not number",
+                    "ball.vx is not number",
+                    "ball.vy is not number"]
+  },
+  { "error" : "require box : {top:int,left:int,right:int,bottom:int}",
+        "predicate" : [ "box.top is not number",
+            "box.left is not number",
+            "box.right is not number",
+            "box.bottom is not number"
+          ]
+      },
+  { "function" : [ "nx = box.right - 1",
+            "vx = 0 - ball.vx",
+            "balldiff = { nx: nx, vx : vx }",
+            "return = union(ball,balldiff)"
+          ],
+        "predicate" : [ "ball.nx > box.right" ],
+        "return" : "ball({ball:return, box:box})"
+      },
+  { "function" : [ "nx = box.left + 1",
+            "vx = 0 - ball.vx",
+            "balldiff = { nx: nx, vx : vx }",
+            "return = union(ball,balldiff)"
+          ],
+        "predicate" : [ "ball.nx < box.left" ],
+        "return" : "ball({ball:return, box:box})"
+      },
+      { "function" : [ "ny = box.bottom - 1",
+            "vy = 0 - ball.vy",
+            "balldiff = { ny: ny, vy : vy }",
+            "return = union(ball,balldiff)"
+          ],
+        "predicate" : [ "ball.ny > box.bottom" ],
+        "return" : "ball({ball:return, box:box})"
+      },
+      { "function" : [ "ny = box.top + 1",
+            "vy = 0 - ball.vy",
+            "balldiff = { ny: ny, vy : vy }",
+            "return = union(ball,balldiff)"
+          ],
+        "predicate" : [ "ball.ny < box.top" ],
+        "return" : "ball({ball:return, box:box})"
+      },
+      { "function" : [ "x = ball.nx",
+            "y = ball.ny",
+            "nx = ball.x + ball.vx",
+            "ny = ball.y + ball.vy",
+            "newball = union(ball,{x:x,y:y,nx:nx,ny:ny})"
+          ],
+        "predicate" : [ "ball.nx < ball.right" ],
+        "return" : "{ball:newball,box:box}"
+      }
+    ],
+  "name" : "ball"
+}
